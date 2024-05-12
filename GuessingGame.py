@@ -6,14 +6,14 @@ broker_address = "ea-pc165.ei.htwg-konstanz.de"
 broker_port = 1883
 
 # MQTT topic to publish to
-topic = "/SysArch/test"
+topic = "/SysArch/test/#"
 
 # Message to send
 message = "Hello, MQTT!, from Python"
 
 # MQTT username and password
-mqtt_username = ""
-mqtt_password = ""
+mqtt_username = "V5"
+mqtt_password = "DE9"
 
 # MQTT client setup
 client = mqtt.Client()
@@ -28,16 +28,25 @@ client.connect(broker_address)
 secret_number = random.randint(0, 1000)
 print("Secret number generated.")
 
+
 # Function to handle incoming messages
 def on_message(client, userdata, message):
-    guess = int(message.payload.decode())
-    if guess == secret_number:
-        print("Congratulations! You guessed the correct number.")
-        client.disconnect()
-    elif guess < secret_number:
-        print(f"{guess} is too small! Try again.")
-    else:
-        print(f"{guess} is too large! Try again.")
+    name = message.topic.split("/")[-1]
+
+
+    try:
+        guess = int(message.payload.decode())
+        if guess == secret_number:
+            print(f"Congratulations {name}! You guessed the correct number.")
+            client.disconnect()
+        elif guess < secret_number:
+            print(f"{name}:{guess} is too small! Try again.")
+        else:
+            print(f"{name}:{guess} is too large! Try again.")
+
+    except:
+        print("Input wasn't a number!")
+
 
 client.on_message = on_message
 

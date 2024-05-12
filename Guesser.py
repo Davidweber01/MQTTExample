@@ -4,15 +4,19 @@ import paho.mqtt.client as mqtt
 broker_address = "ea-pc165.ei.htwg-konstanz.de"
 broker_port = 1883
 
+# Getting Name of the Player
+name = input("Enter your Name: ")
+
 # MQTT topic to publish to
-topic = "/SysArch/test"
+topic = f"/SysArch/test/{name}"
+
 
 # Message to send
 message = "Hello, MQTT!, from Python"
 
 # MQTT username and password
-mqtt_username = ""
-mqtt_password = ""
+mqtt_username = "V5"
+mqtt_password = "DE9"
 
 # MQTT client setup
 client = mqtt.Client()
@@ -29,6 +33,7 @@ def on_message(client, userdata, message):
     pass
 
 client.on_message = on_message
+
 
 # Loop indefinitely
 while True:
