@@ -24,7 +24,7 @@ def on_connect(client, userdata, flags, rc):
         print("Failed to connect to MQTT broker")
 
 # Create an MQTT client instance
-client = mqtt.Client()
+client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
 
 # Set username and password
 client.username_pw_set(username=mqtt_username, password=mqtt_password)

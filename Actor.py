@@ -14,7 +14,7 @@ message = "Hello, MQTT!, from Python"
 mqtt_username = ""
 mqtt_password = ""
 # MQTT client setup
-client = mqtt.Client()
+client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
 
 # Set username and password
 client.username_pw_set(username=mqtt_username, password=mqtt_password)
