@@ -15,8 +15,8 @@ topic = f"/SysArch/test/{name}"
 message = "Hello, MQTT!, from Python"
 
 # MQTT username and password
-mqtt_username = "V5"
-mqtt_password = "DE9"
+mqtt_username = ""
+mqtt_password = ""
 
 # MQTT client setup
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
